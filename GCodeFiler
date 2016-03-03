@@ -1,0 +1,25 @@
+// Made for the University of Connecticut Institution of Material Science
+// GCodeFiler takes in a large text file of GCode and exports to code into seperate files to decrease manual labor.
+
+
+import java.util.*;
+import java.io.*;
+
+public class GCodeFiler {
+	public static void main(String[] args) throws FileNotFoundException{
+		Scanner console = new Scanner(System.in);
+		System.out.println("Filename:");
+		String filename = console.next();
+		Scanner input = new Scanner(new File(filename));
+		while (input.hasNextLine()) {
+			String codeLine = (input.nextLine());
+			System.out.println(codeLine);
+			if (codeLine.contains("G92 E0")) {
+				System.out.println("Output Filename:");
+				String outputName = console.next();
+				PrintStream out = new PrintStream(new FileOutputStream(outputName));
+				break;
+			}
+		}
+	}
+}
